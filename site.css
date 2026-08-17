@@ -10,7 +10,7 @@
    as scrollable width, so on a phone the page could be dragged sideways and
    the menu button sat off screen. `clip` trims it without the side effect
    `overflow: hidden` has here, which is to kill the sticky nav. */
-body { overflow-x: clip; }
+html, body { overflow-x: clip; }
 
 .site .wrap { max-width: 1120px; padding: 0 24px; }
 .section { padding: 92px 0; }

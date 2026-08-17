@@ -1,0 +1,248 @@
+/* Nook marketing site.
+   Loaded after style.css, which owns the colour tokens and the base type, so
+   the legal pages and this one can never drift apart. Everything here is the
+   marketing layer: nav, hero, feature rows, grid, pricing, FAQ, footer. */
+
+/* ---------------------------------------------------------------- layout */
+
+.site .wrap { max-width: 1120px; padding: 0 24px; }
+.section { padding: 92px 0; }
+.section.tight { padding: 64px 0; }
+.section.alt { background: var(--surface); border-block: 1px solid var(--line); }
+.eyebrow {
+  display: inline-block;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent);
+  margin: 0 0 14px;
+}
+.section h2 {
+  font-size: clamp(30px, 4.6vw, 46px);
+  line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 14px;
+}
+.section p.lede {
+  font-size: clamp(17px, 1.6vw, 20px);
+  color: var(--muted); max-width: 60ch; margin: 0 0 8px;
+}
+.center { text-align: center; }
+.center .lede { margin-inline: auto; }
+
+/* ------------------------------------------------------------------- nav */
+
+.nav {
+  position: sticky; top: 0; z-index: 60;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; gap: 10px; height: 66px;
+}
+.nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; color: var(--text); }
+.nav .logo:hover { text-decoration: none; }
+.nav .logo .mark { width: 26px; height: 26px; }
+.nav-spacer { flex: 1; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links > li { list-style: none; position: relative; }
+.nav-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 13px; border-radius: 11px;
+  font-size: 15px; font-weight: 600; color: var(--text);
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+}
+.nav-link:hover { background: var(--surface-2); text-decoration: none; }
+.nav-link .chev { width: 9px; height: 9px; border-right: 2px solid var(--faint); border-bottom: 2px solid var(--faint);
+  transform: rotate(45deg) translate(-1px, -1px); transition: transform .18s ease; }
+.nav-link[aria-expanded="true"] .chev { transform: rotate(-135deg) translate(-2px, -2px); }
+
+/* --------------------------------------------------------- the mega menu */
+
+.mega {
+  position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-6px);
+  width: min(760px, calc(100vw - 40px));
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 20px; padding: 20px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.16), 0 2px 8px rgba(0,0,0,.06);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.nav-links > li:hover .mega,
+.nav-links > li:focus-within .mega,
+.mega[data-open="true"] { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.mega-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.mega-item {
+  display: flex; gap: 13px; align-items: flex-start;
+  padding: 13px; border-radius: 14px; color: var(--text);
+}
+.mega-item:hover { background: var(--surface-2); text-decoration: none; }
+.mega-item .ico {
+  flex: 0 0 38px; height: 38px; border-radius: 11px;
+  display: grid; place-items: center;
+  background: rgba(198,138,52,.13); color: var(--accent);
+  font-size: 18px;
+}
+.mega-item b { display: block; font-size: 15px; margin-bottom: 2px; }
+.mega-item span { color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+.mega-foot {
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  color: var(--muted); font-size: 14px;
+}
+
+/* language switch */
+.lang { display: flex; gap: 2px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 11px; padding: 3px; }
+.lang a { padding: 5px 9px; border-radius: 8px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.lang a:hover { text-decoration: none; color: var(--text); }
+.lang a[aria-current="true"] { background: var(--accent); color: #fff; }
+
+/* mobile */
+.nav-toggle { display: none; }
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 11px;
+    border: 1px solid var(--line); background: var(--surface); cursor: pointer;
+  }
+  .nav-toggle span { display: block; width: 17px; height: 2px; background: var(--text); position: relative; }
+  .nav-toggle span::before, .nav-toggle span::after {
+    content: ""; position: absolute; left: 0; width: 17px; height: 2px; background: var(--text);
+  }
+  .nav-toggle span::before { top: -5px; } .nav-toggle span::after { top: 5px; }
+  .nav-links {
+    position: absolute; top: 66px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+    padding: 10px 16px 18px; display: none;
+  }
+  .nav-links[data-open="true"] { display: flex; }
+  .mega { position: static; transform: none; width: auto; box-shadow: none; border: 0; padding: 4px 0 10px;
+    opacity: 1; visibility: visible; pointer-events: auto; background: none; }
+  .mega-grid { grid-template-columns: 1fr; }
+  .mega-foot { display: none; }
+}
+
+/* ------------------------------------------------------------------ hero */
+
+.hero-wrap { padding: 74px 0 20px; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center; }
+.hero-grid h1 {
+  font-size: clamp(38px, 5.6vw, 64px);
+  line-height: 1.03; letter-spacing: -0.035em; margin: 12px 0 16px;
+}
+.hero-grid p.lede { font-size: clamp(17px, 1.7vw, 21px); }
+.badges { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 26px 0 14px; }
+.trust { display: flex; flex-wrap: wrap; gap: 18px; color: var(--faint); font-size: 14.5px; font-weight: 600; }
+.trust span { display: inline-flex; align-items: center; gap: 7px; }
+.trust span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+
+/* App Store badge, drawn rather than fetched: no third-party request. */
+.appstore {
+  display: inline-flex; align-items: center; gap: 11px;
+  padding: 12px 20px 12px 16px; border-radius: 14px;
+  background: var(--text); color: var(--bg); font-weight: 600;
+}
+.appstore:hover { text-decoration: none; opacity: .9; }
+.appstore .glyph { font-size: 25px; line-height: 1; }
+.appstore small { display: block; font-size: 11px; opacity: .75; font-weight: 600; letter-spacing: .02em; }
+.appstore b { display: block; font-size: 17px; letter-spacing: -0.01em; }
+
+/* --------------------------------------------------------------- devices */
+
+.device { border-radius: 34px; display: block; width: 100%; height: auto;
+  box-shadow: 0 30px 70px rgba(0,0,0,.20), 0 3px 10px rgba(0,0,0,.08);
+  border: 1px solid var(--line); }
+.device-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.device-tilt { transform: rotate(-3deg); }
+.device-tilt-r { transform: rotate(3deg); }
+.hero-art { position: relative; }
+.hero-grid .device-pair .device { max-height: 520px; width: auto; }
+.hero-art::after {
+  content: ""; position: absolute; inset: -8% -12% -14%;
+  background: radial-gradient(50% 50% at 50% 45%, var(--glow), transparent 72%);
+  z-index: -1;
+}
+
+/* ---------------------------------------------------------- feature rows */
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+/* A phone screenshot is nearly 1200px tall at full width, which turned every
+   feature row into its own screenful with the paragraph floating in the middle
+   of it. Cap the height and the row reads as one thought again. */
+.row-art .device { max-height: 560px; width: auto; margin-inline: auto; }
+.section .row-art { display: flex; justify-content: center; }
+.row.flip .row-art { order: -1; }
+@media (max-width: 900px) { .row { grid-template-columns: 1fr; gap: 30px; } .row.flip .row-art { order: 0; } }
+.row ul.clean li::before { top: 14px; }
+
+/* ----------------------------------------------------------------- grid */
+
+/* 300px minimum, so six tiles land as 3 + 3 rather than 4 + 2 with a hole. */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 34px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; text-align: left; }
+.tile .ico {
+  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+  background: rgba(198,138,52,.13); color: var(--accent); font-size: 19px; margin-bottom: 13px;
+}
+.tile h3 { font-size: 17px; margin: 0 0 6px; }
+.tile p { color: var(--muted); font-size: 15px; margin: 0; }
+
+/* --------------------------------------------------------------- pricing */
+
+.price-card {
+  max-width: 480px; margin: 34px auto 0; text-align: center;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 24px; padding: 34px 30px;
+}
+.price-card .amount { font-size: 54px; font-weight: 800; letter-spacing: -0.04em; margin: 6px 0 2px; }
+.price-card .once { color: var(--accent); font-weight: 700; margin-bottom: 18px; }
+.price-card ul.clean { text-align: left; max-width: 300px; margin: 18px auto 22px; }
+
+/* ------------------------------------------------------------------- faq */
+
+.faq { max-width: 760px; margin: 30px auto 0; }
+.faq details {
+  border-bottom: 1px solid var(--line); padding: 4px 0;
+}
+.faq summary {
+  cursor: pointer; list-style: none; padding: 17px 34px 17px 0; position: relative;
+  font-weight: 650; font-size: 17px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; position: absolute; right: 6px; top: 50%;
+  width: 9px; height: 9px; margin-top: -6px;
+  border-right: 2px solid var(--faint); border-bottom: 2px solid var(--faint);
+  transform: rotate(45deg); transition: transform .2s ease;
+}
+.faq details[open] summary::after { transform: rotate(-135deg); margin-top: -2px; }
+.faq p { color: var(--muted); margin: 0 0 18px; max-width: 66ch; }
+
+/* ------------------------------------------------------------------- cta */
+
+.cta {
+  border-radius: 28px; padding: 56px 34px; text-align: center;
+  background: linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--line);
+}
+.cta h2 { margin-bottom: 10px; }
+
+/* ---------------------------------------------------------------- footer */
+
+.site footer { margin-top: 0; padding: 44px 0 34px; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 28px; }
+.foot-grid h4 { font-size: 14px; margin: 0 0 12px; color: var(--text); letter-spacing: -0.01em; }
+.foot-grid ul { list-style: none; padding: 0; margin: 0; }
+.foot-grid li { margin-bottom: 9px; }
+.foot-grid a { color: var(--muted); font-size: 14.5px; }
+.foot-bottom {
+  margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
+  color: var(--faint); font-size: 14px;
+}
+@media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

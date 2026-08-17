@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The story behind Nook</title>
+<meta name="description" content="Why we built a notes app that protects your writing in the two moments someone is close enough to read it: while you type, and while you browse.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill-rule='evenodd' fill='%23C68A34' d='M5.6 60 L5.6 30.4 A26.4 26.4 0 0 1 58.4 30.4 L58.4 60 L53.1 60 L53.1 30.5 A21.1 21.1 0 0 0 10.9 30.5 L10.9 60 Z'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="brand">
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+      <path class="mark-arch" fill-rule="evenodd" d="M5.6 60 L5.6 30.4 A26.4 26.4 0 0 1 58.4 30.4 L58.4 60 L53.1 60 L53.1 30.5 A21.1 21.1 0 0 0 10.9 30.5 L10.9 60 Z"/>
+    </svg>
+    <h1>Nook</h1>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="pill">The story</span>
+      <h2>We wanted a place to write the thing you would <span class="accent">not write with someone beside you</span>.</h2>
+      <p class="lead">So we built one, and then spent a year closing every gap where the words could still be read.</p>
+    </section>
+
+    <section class="card">
+      <h3>The problem nobody was solving</h3>
+      <p>Every private notes app protects your writing after you close it. Encryption at rest, a passcode on the app, a lock on the folder. All of it useful, and all of it aimed at a moment when nobody is actually looking.</p>
+      <p>The moment that matters is the other one. You are on a train, in a waiting room, at a kitchen table. Someone is beside you. The page is open, and it is perfectly readable, because it has to be readable to you.</p>
+      <p>That is the gap Nook was built for.</p>
+    </section>
+
+    <section class="card">
+      <h3>Privacy Typing</h3>
+      <p>Turn it on and each word blacks out the moment you finish it. The word under your cursor stays faintly visible, just for you, so you can still see what you are doing. Your neighbour sees black bars. Tap the eye and the page comes back.</p>
+      <p>It sounds small. In practice it changes what people are willing to write down, which is the entire point of a journal.</p>
+      <div class="shots">
+        <figure>
+          <img src="img/privacy-typing.jpg" alt="A note in Nook with every word blacked out except the word being typed.">
+          <figcaption>The word you are on stays visible. Everything behind it does not.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>The half we were missing</h3>
+      <p>Protecting the page while you write it does little if your list still reads like a table of contents. We had built a feature that hid every word as you typed it, and then printed the first line of every note on the home screen.</p>
+      <p>So in version 1.1 the list is covered too. Every title and preview sits behind glass. Bring them all back with Face ID, or uncover one note at a time, which is the safer habit. Everything covers itself again the moment you leave the app, so Nook never opens onto your own words.</p>
+      <p class="quiet">A covered row does not render the real text at all. Blurring it on top would still hand the words to VoiceOver and to anything that walks the view tree. They simply are not there until you have authenticated.</p>
+      <div class="shots">
+        <figure>
+          <img src="img/hidden.jpg" alt="The Nook home screen with every note title and preview covered by frosted bars.">
+          <figcaption>The overview, covered. Face ID brings it back.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>The tension we designed around</h3>
+      <p>Privacy Typing is visual only. It hides your words from the person beside you, never from you, and never from VoiceOver. That was the first thing we had to get right: an accessibility feature that reads your notes aloud must keep working, because the person who needs it is the owner of the notes.</p>
+      <p>The covered list works the other way round. There, the words are genuinely absent until you authenticate, so VoiceOver announces a covered note and offers to unlock it, rather than reading out what the shield is meant to hide.</p>
+    </section>
+
+    <section class="card">
+      <h3>Nothing to collect</h3>
+      <p>Nook has no networking code beyond the purchase. Not disabled, not opt-in: absent. There is no account, no sync, no analytics, no crash reporting, and no server to send anything to. The App Store privacy label reads Data Not Collected because there is genuinely nothing to collect.</p>
+      <p>Backups are yours to make and yours to keep. You choose the passphrase, and without it nobody can open the file, including us.</p>
+      <div class="facts">
+        <div class="fact"><b>No account</b><span>Open the app and write</span></div>
+        <div class="fact"><b>No cloud</b><span>It stays on the device</span></div>
+        <div class="fact"><b>No subscription</b><span>Pay once, keep it</span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>For the days you do not know where to start</h3>
+      <p>Fifty one hand written prompts, grouped by what you might need: today, how you are, the people in your head, looking back, looking ahead, the quiet ones, the unsaid ones. They work on every device, with no model required.</p>
+      <p>On devices with Apple Intelligence, Nook can also suggest a topic or reflect on an entry using the on device Foundation Models. No network call is made at any point, on any device.</p>
+      <div class="shots">
+        <figure>
+          <img src="img/prompts.jpg" alt="The prompt library in Nook, showing prompts grouped by theme.">
+          <figcaption>Written by hand, not generated.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Who made it</h3>
+      <p>Two of us, in the Netherlands. We built Nook because we wanted it ourselves, and we kept building it because people started telling us what they were finally able to write down.</p>
+      <p>There is no growth plan behind it. Try the whole app for seven days. If it earns a place on your phone, buy us a coffee once and it is yours for life.</p>
+      <div class="actions">
+        <a class="btn ghost" href="index.html">About Nook</a>
+        <a class="btn ghost" href="privacy.html">Privacy</a>
+        <a class="btn ghost" href="support.html">Support</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+      <a href="story.html">Our story</a>
+    </div>
+    <div>Nook is made by AI Adviesbureau B.V. &middot; &copy; 2026</div>
+  </footer>
+
+</div>
+</body>
+</html>

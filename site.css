@@ -5,6 +5,13 @@
 
 /* ---------------------------------------------------------------- layout */
 
+/* The tilted device shots and the radial glow behind the hero deliberately
+   reach past their boxes. That is decoration, but the browser still counts it
+   as scrollable width, so on a phone the page could be dragged sideways and
+   the menu button sat off screen. `clip` trims it without the side effect
+   `overflow: hidden` has here, which is to kill the sticky nav. */
+body { overflow-x: clip; }
+
 .site .wrap { max-width: 1120px; padding: 0 24px; }
 .section { padding: 92px 0; }
 .section.tight { padding: 64px 0; }
@@ -135,7 +142,11 @@
 .trust { display: flex; flex-wrap: wrap; gap: 18px; color: var(--faint); font-size: 14.5px; font-weight: 600; }
 .trust span { display: inline-flex; align-items: center; gap: 7px; }
 .trust span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  /* Let the pair scale with the column instead of holding its height. */
+  .hero-grid .device-pair .device { max-height: none; width: 100%; }
+}
 
 /* App Store badge, drawn rather than fetched: no third-party request. */
 .appstore {
@@ -157,7 +168,10 @@
 .device-tilt { transform: rotate(-3deg); }
 .device-tilt-r { transform: rotate(3deg); }
 .hero-art { position: relative; }
-.hero-grid .device-pair .device { max-height: 520px; width: auto; }
+/* `width: auto` with a fixed max-height is what a wide screen wants, but on a
+   phone two of them side by side came out wider than the viewport. That pushed
+   the whole page sideways and took the menu button off screen with it. */
+.hero-grid .device-pair .device { max-height: 520px; width: auto; max-width: 100%; }
 .hero-art::after {
   content: ""; position: absolute; inset: -8% -12% -14%;
   background: radial-gradient(50% 50% at 50% 45%, var(--glow), transparent 72%);
@@ -170,7 +184,7 @@
 /* A phone screenshot is nearly 1200px tall at full width, which turned every
    feature row into its own screenful with the paragraph floating in the middle
    of it. Cap the height and the row reads as one thought again. */
-.row-art .device { max-height: 560px; width: auto; margin-inline: auto; }
+.row-art .device { max-height: 560px; width: auto; max-width: 100%; margin-inline: auto; }
 .section .row-art { display: flex; justify-content: center; }
 .row.flip .row-art { order: -1; }
 @media (max-width: 900px) { .row { grid-template-columns: 1fr; gap: 30px; } .row.flip .row-art { order: 0; } }

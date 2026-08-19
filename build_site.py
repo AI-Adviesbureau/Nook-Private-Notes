@@ -25,7 +25,7 @@ OUT = pathlib.Path(__file__).parent
 # because that is the URL already in circulation.
 LANGS = ["en", "nl", "de", "fr"]
 LANG_NAME = {"en": "EN", "nl": "NL", "de": "DE", "fr": "FR"}
-APP_STORE_URL = "https://apps.apple.com/app/id0000000000"   # fill in once live
+APP_STORE_URL = "https://apps.apple.com/app/id6784182129"
 
 ARCH = ('<svg class="mark" viewBox="0 0 64 64" aria-hidden="true">'
         '<path class="mark-arch" fill-rule="evenodd" d="M5.6 60 L5.6 30.4 '
@@ -600,7 +600,7 @@ def main():
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(page(lang), encoding="utf-8")
         print(f"  {target.relative_to(OUT)}  {len(target.read_text(encoding='utf-8'))//1024} kB")
-    print(f"\n{len(LANGS)} talen gebouwd. Vergeet APP_STORE_URL niet zodra de app live is.")
+    print(f"\n{len(LANGS)} talen gebouwd.")
 
 
 if __name__ == "__main__":
